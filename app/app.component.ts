@@ -31,11 +31,12 @@ export class AppComponent {
   title = 'Tour of Heroes';
   heroes = HEROES;
   selectedHero: Hero;
-
+  
   onSelect = (hero: Hero)=> this.selectedHero = hero;
 }
 
 var HEROES: Hero[] = [
+  { "id": 10, "name": "Mr. Yushchenko" },
   { "id": 11, "name": "Mr. Nice" },
   { "id": 12, "name": "Narco" },
   { "id": 13, "name": "Bombasto" },
