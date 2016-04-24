@@ -2,14 +2,17 @@
   "name": "angular2-quickstart",
   "version": "1.0.0",
   "scripts": {
-    "start": "tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "start": "rimraf dist && tsc && concurrently \"npm run tsc:w\" \"npm run lite\" ",
+    "build": "rimraf dist && tsc -p app",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "lite": "lite-server",
     "typings": "typings",
-    "postinstall": "typings install"
+    "postinstall": "typings install",
+    "test": "karma start karma.conf.js"
   },
   "license": "ISC",
+  "author": "Mykhailo Yushchenko <MYshchenko@luxoft.com>",
   "dependencies": {
     "angular2": "2.0.0-beta.15",
     "systemjs": "0.19.26",
@@ -22,6 +25,11 @@
     "concurrently": "^2.0.0",
     "lite-server": "^2.2.0",
     "typescript": "^1.8.10",
-    "typings":"^0.7.12"
+    "typings": "^0.7.12",
+    "jasmine-core": "2.4.1",
+    "karma": "0.13.19",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "karma-coverage": "0.5.3",
+    "karma-jasmine": "0.3.6"
   }
 }
