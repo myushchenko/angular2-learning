@@ -1,21 +1,19 @@
-import { Injectable } from 'angular2/core';
+import {Injectable } from 'angular2/core';
+import {Http, Response, Headers} from 'angular2/http';
+import {Observable} from 'rxjs/Observable';
+import 'rxjs/Rx';
+import {Hero} from './hero';
 
 @Injectable()
 export class HeroService {
+    http: Http;
 
-    constructor() { }
+    constructor(http: Http) {
+        this.http = http;
+    }
 
-    getAll = () => [
-        { "id": 10, "name": "Mr. Yushchenko" },
-        { "id": 11, "name": "Mr. Nice" },
-        { "id": 12, "name": "Narco" },
-        { "id": 13, "name": "Bombasto" },
-        { "id": 14, "name": "Celeritas" },
-        { "id": 15, "name": "Magneta" },
-        { "id": 16, "name": "RubberMan" },
-        { "id": 17, "name": "Dynama" },
-        { "id": 18, "name": "Dr IQ" },
-        { "id": 19, "name": "Magma" },
-        { "id": 20, "name": "Tornado" }
-    ];
+    getAll(): Observable<Hero[]> {
+        return this.http.get('heroes.json')
+            .map((res: Response) => res.json());
+    }
 }

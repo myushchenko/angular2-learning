@@ -14,7 +14,7 @@ export class AppHeroes {
   selectedHero: Hero;
 
   constructor(private heroService: HeroService) {
-    this.heroes = heroService.getAll();
+    heroService.getAll().subscribe(heroes => this.heroes = heroes);
   }
 
   onSelect = (hero: Hero) => this.selectedHero = hero;

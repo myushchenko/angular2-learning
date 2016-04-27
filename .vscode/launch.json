@@ -19,7 +19,7 @@
 			},
 			"externalConsole": false,
 			"sourceMaps": false,
-			"outDir": null
+			"outDir": "${workspaceRoot}/dist"
 		},
 		{
 			"name": "Attach",

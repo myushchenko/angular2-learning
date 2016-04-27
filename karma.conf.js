@@ -1,4 +1,4 @@
-module.exports = function(config) {
+module.exports = function (config) {
     config.set({
 
         basePath: '.',
@@ -6,20 +6,31 @@ module.exports = function(config) {
         frameworks: ['jasmine'],
 
         files: [
-            // paths loaded by Karma
-            {pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true, watched: true},
-            {pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true},
-            {pattern: 'node_modules/rxjs/bundles/Rx.js', included: true, watched: true},
-            {pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true, watched: true},
-            {pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true, watched: true},
-            {pattern: 'node_modules/angular2/bundles/http.dev.js', included: true, watched: true},
-            {pattern: 'karma-test-shim.js', included: true, watched: true},
+            'node_modules/zone.js/dist/zone.js',
+            'node_modules/zone.js/dist/long-stack-trace-zone.js',
+            'node_modules/zone.js/dist/jasmine-patch.js',
+            'node_modules/es6-module-loader/dist/es6-module-loader.js',
+            'node_modules/traceur/bin/traceur-runtime.js', // Required by PhantomJS2, otherwise it shouts ReferenceError: Can't find variable: require
+            'node_modules/traceur/bin/traceur.js',
+            'node_modules/systemjs/dist/system.src.js',
+            'node_modules/reflect-metadata/Reflect.js',
+            // beta.7 IE 11 polyfills from https://github.com/angular/angular/issues/7144
+            'node_modules/angular2/es6/dev/src/testing/shims_for_IE.js',
 
-            {pattern: 'dist/app.heroes.js', included: true, watched: true},
-			{pattern: 'dist/app.heroes.spec.js', included: true, watched: true}
+            { pattern: 'node_modules/angular2/**/*.js', included: false, watched: false },
+            { pattern: 'node_modules/rxjs/**/*.js', included: false, watched: false },
+            { pattern: 'dist/**/*.js', included: false, watched: true },
+            { pattern: 'node_modules/systemjs/dist/system-polyfills.js', included: false, watched: false }, // PhantomJS2 (and possibly others) might require it 
+
+            'karma-test-shim.js'
         ],
-
-        port: 9876,
+         // proxied base paths
+        proxies: {
+            '/angular2/': '/base/node_modules/angular2/',
+			'/node_modules/': '/base/node_modules/',
+            "/app/": "/base/app/"
+        },
+        port: 7898,
 
         logLevel: config.LOG_INFO,
 
@@ -27,30 +38,32 @@ module.exports = function(config) {
 
         autoWatch: true,
 
+        //browsers: ['Chrome'],
         browsers: ['PhantomJS'],
 
         // Karma plugins loaded
         plugins: [
             'karma-jasmine',
             'karma-coverage',
+            'karma-chrome-launcher',
             'karma-phantomjs-launcher'
         ],
 
         // Coverage reporter generates the coverage
-        reporters: ['progress', 'dots', 'coverage'],
+        reporters: ['progress', 'coverage'],
 
         // Source files that you wanna generate coverage for.
         // Do not include tests or libraries (these files will be instrumented by Istanbul)
         preprocessors: {
-            'dist/**/!(*spec).js': ['coverage']
+            'dist/!(*spec).js': ['coverage']
         },
 
-        coverageReporter: {
-            reporters:[
-                {type: 'lcovonly', subdir: '.', file: 'coverage-final.txt'}
+        /*coverageReporter: {
+            reporters: [
+                { type: 'lcovonly', subdir: '.', file: 'coverage-final.txt' }
             ]
-        },
+        },*/
 
         singleRun: true
-    })
+    });
 };
