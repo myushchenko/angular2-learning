@@ -1,4 +1,4 @@
-import {describe, it, beforeEach, expect, beforeEachProviders, inject} from 'angular2/testing';
+/*import {describe, it, beforeEach, expect, beforeEachProviders, inject} from 'angular2/testing';
 import {Http, HTTP_PROVIDERS, XHRBackend, Response, ResponseOptions, BaseRequestOptions} from 'angular2/http';
 import {MockBackend} from 'angular2/http/testing';
 import {provide, ReflectiveInjector} from 'angular2/core';
@@ -15,23 +15,6 @@ class HeroServiceMock {
 
 describe('AppHeroes', () => {
     var app: AppHeroes = null;
-
-    /*beforeEachProviders(() => [
-        provide( HeroService, {useClass: HeroServiceMock})
-    ]);*/
-
-    /*beforeEachProviders(() => [
-        HeroService,
-        BaseRequestOptions,
-        MockBackend,
-        provide(Http, {
-            useFactory: (backend: MockBackend, defaultOptions: BaseRequestOptions) => {
-                return new Http(backend, defaultOptions);
-            },
-            deps: [MockBackend, BaseRequestOptions]
-        })
-    ]);*/
-
     let injector,
         backend,
         mockBackend,
@@ -97,5 +80,6 @@ describe('AppHeroes', () => {
         var hero: Hero = { "id": 10, "name": "Mr. Yushchenko" };
         app.onSelect(hero);
         expect(app.selectedHero).toBe(hero);
-    })*/
+    })
 });
+*/
