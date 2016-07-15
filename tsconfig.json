@@ -9,11 +9,9 @@
         "removeComments": false,
         "noImplicitAny": false,
         "declaration": true,
-        "outDir": "dist"
+        "outDir": "app"
     },
     "exclude": [
-        "node_modules",
-        "typings/main",
-        "typings/main.d.ts"
+        "node_modules"
     ]
 }

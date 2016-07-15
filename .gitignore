@@ -1,4 +1,7 @@
 node_modules
 typings
 coverage
-dist
+_test-output
+app/*.js
+app/*.js.map
+app/*.d.ts
